@@ -45,8 +45,6 @@ Java 11
             Checked exceptions are not logically controlable by a program and hence
             can not be avoided and hence msut be handled mandatly.
 
-
-
         Suppressed Exceptions
 
             Connection con = null;
@@ -81,4 +79,100 @@ Java 11
             }
 
 
-    
+    Java Standard Libraries
+    -------------------------------------------------------------------------------------
+
+        java.lang
+                        Object
+                        String
+                        StringBuffer
+                        StringBuilder
+                        System
+                        Math
+                        Wrapper Classes
+                        Throwable
+                        Exception
+                        RuntimException
+                        Runnable
+                        Thread
+                        Comparable
+
+        java.time
+                        LocalDate
+                        LocalTime
+                        LocalDateTime
+                        ZonedDateTime
+                        Period
+                        Duration
+                        DateTimeFormatter
+
+        java.util
+                        Scanner
+                        Random
+
+                        Collection
+                            List
+                            Set
+                                SortedSet
+                        Map
+                            SortedMap
+
+                        List <--------- ArrayList, Vector, LinkedList
+                        Set <---------- HashSet, TreeSet, LinkedHashSet
+                        Map <---------- HashMap, TreeMap, LinkedHashMap
+
+                        Iterator
+                        ListIterator
+                        Comparator
+                        Collections
+
+                        Navigable Collections
+
+        java.util.function
+                        interfaces as in java8
+
+                        Suppliers
+                        Consumers
+                        Predicates
+                        Functional
+
+                        Method Referencing and Lambda Expressions
+
+        java.util.stream
+                        Stream
+                                forEach
+                                reduce
+                                map
+                                flatMap
+                                collect
+                                filter
+                                .....
+                        Collectors
+
+        java.io
+                        Character Streams             Binary Streams
+                                Reader                      InputStream
+                                    BufferedReader                  FileInputStream
+                                    FileReader                      DataInputStream
+                                    InputStreamReader               ObjectInputStream
+
+                                Writer                      OutputStream
+                                    FileWriter                      FileOutputStream
+                                                                    DataOutputStream
+                                                                    ObjectOutputStream
+
+                        File, IOException,....
+        java.nio
+                        Files
+                        Path
+                        .....
+
+        java.sql
+                        DriverManager
+                        Connection
+                        Statement
+                        PreparedStatement
+                        CallableStatement
+                        ResultSet
+                        ResultSetMetadata
+                        DatabaseMetaData
