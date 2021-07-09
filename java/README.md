@@ -106,6 +106,18 @@ Java 11
                         Duration
                         DateTimeFormatter
 
+
+                        Assignment:
+                            Accept the Principle, RateOfInterest, NoOfEMIS and firstEmiDueDate,
+                            compute and display the below
+
+                            EMI#       EmiDueDate       EMI         PrincipalComponent      InterestComponent
+                            1           
+                            2
+                            3
+
+
+
         java.util
                         Scanner
                         Random
