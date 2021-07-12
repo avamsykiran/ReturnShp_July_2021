@@ -116,7 +116,11 @@ Java 11
                             2
                             3
 
+        Interface Improvements
 
+                1. static methods
+                2. default methods
+                3. functional interface
 
         java.util
                         Scanner
@@ -140,26 +144,72 @@ Java 11
 
                         Navigable Collections
 
-        java.util.function
-                        interfaces as in java8
+        functional interface
 
-                        Suppliers
-                        Consumers
-                        Predicates
-                        Functional
+                any interface that has only one abstract method.
+                @FunctionalInterface is a compiler check annotation to ensure that the functional interrface 
+                shall not have more then one abstract method..
 
-                        Method Referencing and Lambda Expressions
+                as know any interface msut be implemnted
+                by a concret or anonymous class.
+
+                but functional interface apart from beign capable of getting implemented by concrete or abstract classes, it can be impl;emented using a lambda expression alos.
+
+                @FunctionalInterface
+                interface BinOperator{
+                    double do(double a,double b);
+                }
+
+                java.util.function
+                        Suppliers           has a return val, but no arguments
+                        Consumers           has no return val, but has arguments
+                        Predicates          returns boolean always
+                        Operator            the arg datatype and return type are same
+                        Functional          has a return val and also has arguments
+
+
+        Lambda Expressions
+                BinOperator sum = (a,b) -> a+b;
+                int result = sum.do(10,20); 
+        
+        Method Referencing
+                BinOperator p = Math::pow;
+                double d1 = p.do(2,5);
+                double d2 = Math.pow(2,5);
+                System.out.println(d1==d2);//true
 
         java.util.stream
-                        Stream
-                                forEach
-                                reduce
-                                map
-                                flatMap
-                                collect
-                                filter
-                                .....
-                        Collectors
+
+                    is a flow of data from a collection(set/list/map) or an array.
+
+                        Stream s1 = Stream.of(array);
+                        Stream s2 = list.stream();
+                        Stream s2 = set.stream();
+
+                        Stream Operations - Terminal  - that retrun zero or one object
+                            forEach     accepts a consumer,
+                                        executes this consumer on each and every ele of the stream.
+
+                            reduce      accepts a BinaryOperator
+                                        executes the BO on each pair of eles on the stream
+                                        and return the final value.
+
+                                        int[] nums = new int[]{1,2,3,4,5};
+                                        Stream s1 = Stream.of(nums);
+                                        BinaryOperator<Integer> bo = (n1,n2) -> n1+n2;
+                                        Optional<Integer> result = s1.reduce(bo);
+                                            //bo.apply(bo.apply(bo.apply(bo.apply(1,2),3),4),5)
+                                            //15
+
+
+                            collect
+
+                        Stream Operations - Intermedate - that return another stream
+                            map
+                            flatMap
+                            filter
+                            
+                       
 
         java.io
                         Character Streams             Binary Streams

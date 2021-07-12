@@ -3,6 +3,7 @@ package com.cts.returnship.jff.ui;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.cts.returnship.jff.model.Employee;
@@ -21,7 +22,10 @@ public class EmpListDemo {
 		emps.add(new Employee(102L, "Benjumen", LocalDate.now().plusDays(5), 11000.0));
 		
 		//Collections.sort(emps);
-		Collections.sort(emps,new EmployeweDateOfJoiningComparator());
+		//Collections.sort(emps,new EmployeweDateOfJoiningComparator());
+		//Collections.sort(emps,(e1,e2) -> e1.getDateOfJoining().compareTo(e2.getDateOfJoining()));
+		
+		Collections.sort(emps,(e1,e2) -> e1.getBasic().compareTo(e2.getBasic()));
 		
 		for(Employee e : emps)
 			System.out.println(e);
