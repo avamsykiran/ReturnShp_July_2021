@@ -2,20 +2,23 @@ package com.cts.returnship.jff.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
-public class Employee implements Comparable<Employee>,Serializable{
-	
+public class Employee implements Comparable<Employee>, Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long empId;
 	private String fullName;
 	private LocalDate dateOfJoining;
 	private Double basic;
-	
-	public Employee() {}
+	private List<String> skills;
+
+	public Employee() {
+	}
 
 	public Employee(Long empId, String fullName, LocalDate dateOfJoining, Double basic) {
 		super();
@@ -23,6 +26,15 @@ public class Employee implements Comparable<Employee>,Serializable{
 		this.fullName = fullName;
 		this.dateOfJoining = dateOfJoining;
 		this.basic = basic;
+	}
+
+	public Employee(Long empId, String fullName, LocalDate dateOfJoining, Double basic, List<String> skills) {
+		super();
+		this.empId = empId;
+		this.fullName = fullName;
+		this.dateOfJoining = dateOfJoining;
+		this.basic = basic;
+		this.skills = skills;
 	}
 
 	public Long getEmpId() {
@@ -57,6 +69,20 @@ public class Employee implements Comparable<Employee>,Serializable{
 		this.basic = basic;
 	}
 
+	public List<String> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<String> skills) {
+		this.skills = skills;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", fullName=" + fullName + ", dateOfJoining=" + dateOfJoining + ", basic="
+				+ basic + ", skills=" + skills + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -65,6 +91,7 @@ public class Employee implements Comparable<Employee>,Serializable{
 		result = prime * result + ((dateOfJoining == null) ? 0 : dateOfJoining.hashCode());
 		result = prime * result + ((empId == null) ? 0 : empId.hashCode());
 		result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
+		result = prime * result + ((skills == null) ? 0 : skills.hashCode());
 		return result;
 	}
 
@@ -97,13 +124,12 @@ public class Employee implements Comparable<Employee>,Serializable{
 				return false;
 		} else if (!fullName.equals(other.fullName))
 			return false;
+		if (skills == null) {
+			if (other.skills != null)
+				return false;
+		} else if (!skills.equals(other.skills))
+			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [empId=" + empId + ", fullName=" + fullName + ", dateOfJoining=" + dateOfJoining + ", basic="
-				+ basic + "]";
 	}
 
 	@Override
