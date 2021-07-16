@@ -5,10 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.log4j.Logger;
 
@@ -24,32 +24,45 @@ public class SalesRecordServiceImpl implements SalesRecordService {
 
 	private SalesRecordDao dao;
 	private Logger logger;
+
+	private final String numRegx = "(\\s*\\d+\\s*)";
+	private final String decRegx = "(\\s*\\d+\\.?\\d+\\s*)";
+	private final String dateRegx = "([0-9]{1,2}-[A-Z[a-z]]{3}-[0-9]{4})";
+	private String regex;
+	private final DateTimeFormatter dtFormatter;
 	
 	public SalesRecordServiceImpl() throws DatabaseException {
-		this.logger = Logger.getLogger(this.getClass());
 		this.dao = new SalesRecordDaoImpl();
+		this.logger = Logger.getLogger(this.getClass());
+		this.dtFormatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+		this.regex = numRegx + ",(.*),(.*)," + numRegx + "," + decRegx + "," + decRegx + "," + dateRegx;
 	}
 
 	private UploadSummary parseAndSave(String line) {
 		List<String> errors = new ArrayList<>();
-		
-		String details[] = line.split(",");
-		
-		if(details.length!=7) {
-			errors.add("Incorrect number of attributes in "+line);
-		}else {
+
+		if (!line.matches(regex))
+			errors.add("Incorrect format of attributes at " + line);
+		else {
+
+			String details[] = line.split(",");
 			SalesRecord record = new SalesRecord();
 			
-			//parsing and validation
-			
 			try {
+				record.setReceiptNo(Long.parseLong(details[0]));
+				record.setItemName(details[1]);
+				record.setArea(details[2]);
+				record.setQuantity(Integer.parseInt(details[3]));
+				record.setAmount(Double.parseDouble(details[4]));
+				record.setRate(Double.parseDouble(details[5]));
+				record.setReceiptDate(LocalDate.parse(details[6],dtFormatter));
 				dao.add(record);
-			} catch (DatabaseException exp) {
+			} catch (DateTimeParseException | DatabaseException exp) {
 				errors.add(exp.getMessage());
 			}
 		}
-		
-		return new UploadSummary(1,errors.isEmpty()?1:0,errors);
+
+		return new UploadSummary(1, errors.isEmpty() ? 1 : 0, errors);
 	}
 
 	@Override
@@ -63,11 +76,8 @@ public class SalesRecordServiceImpl implements SalesRecordService {
 		}
 
 		try {
-			summary = 
-					Files.readAllLines(PATH)
-					.stream()
-					.map(this::parseAndSave)
-					.reduce((s1, s2) -> new UploadSummary(s1,s2)).orElse(null);			
+			summary = Files.readAllLines(PATH).stream().map(this::parseAndSave)
+					.reduce((s1, s2) -> new UploadSummary(s1, s2)).orElse(null);
 		} catch (IOException exp) {
 			logger.error(exp);
 			throw new InvalidUploadFileException("Unable to proces the uplaod file.");
