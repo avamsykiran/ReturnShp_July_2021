@@ -154,6 +154,9 @@ ORM
           @JoinColumn             field
           @JoinTable              field
 
+          @Embedable              class
+          @Embeded                field
+
           @Inheretence            class
           @DiscriminatorColumn    class
           @DiscriminatorValue     class

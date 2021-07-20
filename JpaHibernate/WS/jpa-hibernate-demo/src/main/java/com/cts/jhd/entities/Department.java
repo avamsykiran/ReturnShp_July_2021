@@ -1,9 +1,13 @@
 package com.cts.jhd.entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +21,9 @@ public class Department {
 	
 	@Column(name="dname")
 	private String name;
+	
+	@OneToMany(mappedBy = "dept",cascade = CascadeType.ALL)
+	private Set<Employee> emps;
 	
 	public Department() {}
 
@@ -40,6 +47,14 @@ public class Department {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Set<Employee> getEmps() {
+		return emps;
+	}
+
+	public void setEmps(Set<Employee> emps) {
+		this.emps = emps;
 	}
 
 	@Override
