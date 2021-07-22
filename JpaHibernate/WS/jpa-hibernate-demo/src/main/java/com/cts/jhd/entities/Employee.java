@@ -10,8 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+@NamedQueries({
+	@NamedQuery(name = "EMP_SAL_QRY",
+			query = "SELECT e FROM Department d JOIN d.emps e WHERE (d.deptId=:did and e.salary>=:salLimit)")
+})
 
 @Entity
 @Table(name="emps")
@@ -168,4 +175,12 @@ public class Employee implements Comparable<Employee>{
 	public int compareTo(Employee arg0) {
 		return this.empId==null? this.fullName.compareTo(arg0.fullName):this.empId.compareTo(arg0.empId);
 	}
+
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", fullName=" + fullName + ", salary=" + salary + ", designation="
+				+ designation + ", address=" + address + ", salAccount=" + salAccount +"]";
+	}
+	
+	
 }
