@@ -60,7 +60,6 @@ Dependency Injection is an proposed impl of IoC
       this.dao=dao;
     }
   }
- 
 
 Spring Core 
 ------------------------------------------------------------
@@ -78,4 +77,49 @@ Spring Core
         AnnotationConfigApplicationContext
         WebAnnotationConfigApplicationContext
 
-  
+  Spring Configuaration
+  -------------------------------
+
+    it is about informing the spring container (ApplicationContext)
+    about 
+      1. how many software components (daos,services,controller..etc) do we have 
+      2. and which software component is dependent on the other.
+
+    Xml Based Configuareation
+
+    Annotation Based configuaration
+
+      @Configuaration      class level 
+
+      @Component ("id")    class level      informing that we need the contaienr to create and  
+                                            manage an obejct of the class that is applied with this annotation.
+
+      @Component
+        @Service
+        @Repository
+        @Controller
+        @RestController
+        @ControllerAdvise
+        @RestControllerAdvise ...etc
+
+
+      @ComponentScan({"package1","package2",...})   class level  applied along with @Configuaration
+
+      @Value("${propertyName:defaultValue}")        Field level
+
+      @Value("#{beanid.field:defaultValue}")        Field level
+
+      @PropertySource("propertyFielPath")           class level  applied along with @Configuaration
+
+      @Scope                            class level   applied along with @Component
+              singleton       each getBean call the same object is given
+              prototype       each getBean call a new object is given
+              
+              request         works only in WebApplictionContext
+              session         works only in WebApplictionContext
+              global-session  works only in WebApplictionContext
+
+      @Autowired                        Field level / method level
+
+    Java Based Configuaration
+
