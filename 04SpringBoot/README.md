@@ -67,8 +67,7 @@ Spring Boot
       
       com.cts.projectname.subPack1
       com.cts.projectname.subPack2
-      com.cts.projectname.subPack3
-                      
+      com.cts.projectname.subPack3       
 
 Spring Boot Projects <=> Spring Stater Projects
 -----------------------------------------------------
@@ -78,3 +77,34 @@ Spring Boot Starter         http://start.spring.io
 Using Spring Boot CLI
 
 Using STS spring starter project wizard.
+
+Spring Data
+-------------------------------------------------------
+
+  is a spring module that provides auto implementation of daos.
+
+  Spring Data JDBC            JDBC implementation for all RDBMS
+  Spring Data JPA             ORM implementation for all RDBMS
+  Spring Data Redis           ORM-nosql implementation for Redis
+      ...etc  
+
+
+
+        CrudRepository
+          JpaRepository
+
+        @Entity
+        @Table(name="emps")
+        class Employee{
+            @Id
+            private Long empId;
+
+            //JPA mappings....
+        }
+
+        interface EmployeeRepository extends JpaRepository<Employee,Long>{
+
+        }
+
+
+  
