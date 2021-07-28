@@ -31,7 +31,7 @@ public class Subscriber implements Serializable {
 	@Column(name="mob",nullable = false,unique = true)
 	private String mobile;
 	
-	@OneToMany(mappedBy = "subscriber")
+	@OneToMany(mappedBy = "subpId.subscriber")
 	private Set<Subscription> subscriptions;
 	
 	public Subscriber() {

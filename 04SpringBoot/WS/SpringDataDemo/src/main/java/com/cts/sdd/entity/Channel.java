@@ -26,7 +26,7 @@ public class Channel implements Comparable<Channel>,Serializable{
 	@Column(name="ch_month_fee",nullable = false)
 	private Double monthlyFee;
 	
-	@OneToMany(mappedBy = "channel")
+	@OneToMany(mappedBy = "subpId.channel")
 	private Set<Subscription> subscriptions;
 
 	

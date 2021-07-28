@@ -93,6 +93,17 @@ Spring Data
         CrudRepository
           JpaRepository
 
+        //custom methods to be autoamtically implemented
+
+          Entity        findByProperty(Type property)
+          List<Entity>  findAllByProperty(Type property)
+          boolean       existsByProperty(Type property)
+
+        //custom methods to be autoamtically implemented
+
+          @Query("jpa query over here")
+          ReturnVal methodName(Type1 p1,Type p2...);
+
         @Entity
         @Table(name="emps")
         class Employee{
@@ -104,7 +115,25 @@ Spring Data
 
         interface EmployeeRepository extends JpaRepository<Employee,Long>{
 
+            Employee findByEmail(String email);
+            List<Employees> findByDept(Department dept);
+            List<Employees> frindByFirstName(String firstName);
+            boolean findByMobile(String mobile);
+
+            @Query("SELECT e FROM Employee e WHERE e.salary between :lowerBound and :upperBound")
+            List<Employee> inSalRange(double lowerBound,double upperBound);
         }
 
+   Case Study
+   -----------------------------------------------------------------
 
-  
+    A D2H operator portal,
+
+      The D2H operator must be able to 
+        1. Add Channels
+        2. Add Subscribers
+        3. Add Subscriptions to the subscribers
+        4. Retrive the list of channels/subscribers/subscriptiosn for a particular subscriber.
+
+
+      
