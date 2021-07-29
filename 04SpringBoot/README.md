@@ -136,4 +136,60 @@ Spring Data
         4. Retrive the list of channels/subscribers/subscriptiosn for a particular subscriber.
 
 
-      
+Spring Web MVC
+------------------------------------------------------------------------------------------------
+
+  Single FrontEnd Controller Pattern
+
+    Client  ←------------------------------------------------------------------------
+      |                                                                             |
+      |                                                                         [Views]      
+      ↓                                                                             ↑
+    FrontEnd                                                                        |
+    Controller                                                                  [ViewResolver]
+(DispatcherServlet) ---[ UrlHandler ]---→  Controlllers { services and respos } ------|
+
+    Controller
+        is any sinple POJO marked as @Controller 
+        it must provide methods called actions, where
+        each action must return either a String or a ModelAndView
+        where the String is the view name
+        and the ModelAndView is a composition of viewName and models to be rendered on the actual view.
+
+    UrlHandler
+        SimpleUrlHandler (default)      @RequestMapping, @GetMapping, ....etc
+        ControllerBeanNAmeUrlHandler
+        ...etc
+
+    ViewResolver
+        XmlResourceViewResolver
+        BeanResourceViewResolver
+        InternalResourceViewResolver    (default in spring boot)
+              prefix and suffix
+
+              actualView = prefix + viewName + suffix
+
+    View      JSP pages
+
+    Web MVC Annotations
+    ----------------------------------------------
+          @Controller
+          @ControllerAdvice
+          @RestController
+          @RestControllerAdvice
+          @RequestMapping
+            @GetMapping
+            @PostMapping
+            @PutMapping
+            @PatchMapping
+            @DeleteMapping            
+            
+          @RequestParam
+          @PathVaraible
+          @ModelAttribute
+          @RequestBody
+
+          @ExceptionHandler
+
+          
+          

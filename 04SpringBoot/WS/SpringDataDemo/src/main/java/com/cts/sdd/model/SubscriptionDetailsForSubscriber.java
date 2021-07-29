@@ -1,4 +1,4 @@
-package com.cts.sdd.entity;
+package com.cts.sdd.model;
 
 import java.time.LocalDate;
 

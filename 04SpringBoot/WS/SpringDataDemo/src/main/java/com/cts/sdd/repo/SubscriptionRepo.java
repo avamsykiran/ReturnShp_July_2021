@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.cts.sdd.entity.Subscription;
-import com.cts.sdd.entity.SubscriptionDetailsForSubscriber;
 import com.cts.sdd.entity.SubscriptionId;
+import com.cts.sdd.model.SubscriptionDetailsForSubscriber;
 
 public interface SubscriptionRepo extends JpaRepository<Subscription, SubscriptionId> {
 	
