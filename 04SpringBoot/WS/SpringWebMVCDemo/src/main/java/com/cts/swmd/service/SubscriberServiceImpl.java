@@ -1,7 +1,6 @@
 package com.cts.swmd.service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -14,6 +13,7 @@ import com.cts.swmd.entity.Subscriber;
 import com.cts.swmd.entity.Subscription;
 import com.cts.swmd.entity.SubscriptionId;
 import com.cts.swmd.exception.D2HException;
+import com.cts.swmd.model.SubscriptionDetailsForSubscriber;
 import com.cts.swmd.repo.ChannelRepo;
 import com.cts.swmd.repo.SubscriberRepo;
 import com.cts.swmd.repo.SubscriptionRepo;
@@ -69,16 +69,8 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
-	public List<Subscription> getAllSubscriptionsOf(Long subId) {
-//		Subscriber s = subscriberRepo.findById(subId).orElse(null);
-//		List<Subscription> results=null;
-//		
-//		if (s != null)
-//			results = new ArrayList<>(s.getSubscriptions());
-//
-//		return results;
-		
-		return subscriptionRepo.getAllBySubscriber(subId);
+	public List<SubscriptionDetailsForSubscriber> getAllSubscriptionsOf(Long subId) {
+		return subscriptionRepo.getAllChannelNamesBySubscriber(subId);
 	}
 
 	

@@ -21,7 +21,11 @@
 			<li class="nav-item"><a href="/channels" class="nav-link"> <i
 					class="fa-list"> Channels</i></a></li>
 			<li class="nav-item"><a href="/channels/add" class="nav-link">
-					<i class="fa-plus">New Channel</i>
+					<i class="fa-plus">New Channel</i></a></li>
+			<li class="nav-item"><a href="/subscribers" class="nav-link">
+					<i class="fa-list"> Subscribers</i>
 			</a></li>
+			<li class="nav-item"><a href="/subscribers/add" class="nav-link">
+					<i class="fa-plus">New Subscriber</i></a></li>
 		</ul>
 	</nav>

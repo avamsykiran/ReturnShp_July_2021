@@ -12,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="subscribers")
@@ -23,12 +28,23 @@ public class Subscriber implements Serializable {
 	private Long subscriberId;
 	
 	@Column(name="full_name",nullable = false)
+	@NotNull(message = "Full Name is a mandate field")
+	@NotEmpty(message = "Full Name is a mandate field")
+	@NotBlank(message = "Full Name is a mandate field")
 	private String fullName;
 	
 	@Column(name="email",nullable = false,unique = true)
+	@NotNull(message = "Email is a mandate field")
+	@NotEmpty(message = "Email is a mandate field")
+	@NotBlank(message = "Email is a mandate field")
+	@Email(message = "A valid email id expected")
 	private String emailId;
 	
 	@Column(name="mob",nullable = false,unique = true)
+	@NotNull(message = "Mobile Number is a mandate field")
+	@NotEmpty(message = "Mobile Number is a mandate field")
+	@NotBlank(message = "Mobile Number is a mandate field")
+	@Pattern(regexp = "[1-9][0-9]{9}",message = "Mobile Number is exactly a ten digited number")
 	private String mobile;
 	
 	@OneToMany(mappedBy = "subpId.subscriber")
