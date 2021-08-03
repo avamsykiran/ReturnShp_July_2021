@@ -48,9 +48,12 @@
 		<tfoot>
 			<tr>
 				<td colspan="2">
-					<form class="form-inline">
-						<select class="form-control">
+					<form class="form-inline" action="addSubscription">
+						<select class="form-control" name="chid" required>
 							<option value="">---SELECT CHANNEL---</option>
+							<c:forEach var="ch" items="${unSubscribedChannels }">
+								<option value="${ch.channelId }">${ch.channelName } @ INR.${ch.monthlyFee }/month</option>
+							</c:forEach>
 						</select>
 						<button class="ml-2 btn btn-sm btn-primary">Subscribe Now</button>
 					</form>

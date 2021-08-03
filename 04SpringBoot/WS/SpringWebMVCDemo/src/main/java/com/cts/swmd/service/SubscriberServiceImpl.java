@@ -26,7 +26,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 	@Autowired
 	private SubscriptionRepo subscriptionRepo;
-
+	
 	@Autowired
 	private ChannelRepo channelRepo;
 
@@ -71,6 +71,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Override
 	public List<SubscriptionDetailsForSubscriber> getAllSubscriptionsOf(Long subId) {
 		return subscriptionRepo.getAllChannelNamesBySubscriber(subId);
+	}
+
+	@Override
+	public List<Channel> getChannelsNotSubscribedBy(Long subscriberId) {
+		return channelRepo.getChannelsNotSubscribedBy(subscriberId);
 	}
 
 	
