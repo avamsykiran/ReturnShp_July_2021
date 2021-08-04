@@ -184,9 +184,11 @@ Spring Web MVC
             @PatchMapping
             @DeleteMapping            
             
-          @RequestParam
-          @PathVaraible
-          @ModelAttribute
+          @RequestParam           url?parmName1=val&paramName2=val or form data
+                                  https://www.google.com/search?q=apples
+          @PathVaraible           url/value/value   
+                                  http://localhost:7777/subscriptions/5
+          @ModelAttribute         Form Data having multiple fields and fetechs the form data intoa a Model Object.
           @RequestBody
 
           @ExceptionHandler

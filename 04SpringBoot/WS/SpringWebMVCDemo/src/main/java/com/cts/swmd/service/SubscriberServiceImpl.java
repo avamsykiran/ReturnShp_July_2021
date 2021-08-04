@@ -43,10 +43,17 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Transactional
 	@Override
 	public Subscriber add(Subscriber subscriber) {
-		// required validations here..
 		return subscriberRepo.save(subscriber);
 	}
 
+	@Transactional
+	@Override
+	public Subscriber update(Subscriber subscriber) throws D2HException {
+		if(!subscriberRepo.existsById(subscriber.getSubscriberId()))
+			throw new D2HException("No such subcriber record found to update");
+		return subscriberRepo.save(subscriber);
+	}
+	
 	@Transactional
 	@Override
 	public Subscription addSubcription(Long subId, Long chId) throws D2HException {
@@ -76,7 +83,5 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Override
 	public List<Channel> getChannelsNotSubscribedBy(Long subscriberId) {
 		return channelRepo.getChannelsNotSubscribedBy(subscriberId);
-	}
-
-	
+	}	
 }

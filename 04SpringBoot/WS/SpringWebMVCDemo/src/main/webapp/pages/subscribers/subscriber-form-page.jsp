@@ -18,6 +18,11 @@
 				<form:errors path="fullName" />
 			</div>
 			<div class="form-group">
+				<form:label path="gender">Gender</form:label>
+				<form:select path="gender" items="${genders }" class="form-control" />
+				<form:errors path="gender" />
+			</div>
+			<div class="form-group">
 				<form:label path="emailId">Email Id</form:label>
 				<form:input path="emailId" class="form-control" />
 				<form:errors path="emailId" />

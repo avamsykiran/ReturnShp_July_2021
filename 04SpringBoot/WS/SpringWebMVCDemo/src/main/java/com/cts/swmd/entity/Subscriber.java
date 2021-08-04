@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,6 +49,10 @@ public class Subscriber implements Serializable {
 	@Pattern(regexp = "[1-9][0-9]{9}",message = "Mobile Number is exactly a ten digited number")
 	private String mobile;
 	
+	@Column(name="gen")
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
+	
 	@OneToMany(mappedBy = "subpId.subscriber")
 	private Set<Subscription> subscriptions;
 	
@@ -55,13 +61,22 @@ public class Subscriber implements Serializable {
 	}
 
 	public Subscriber(Long subscriberId, String fullName, String emailId, String mobile,
-			Set<Subscription> subscriptions) {
+			Set<Subscription> subscriptions,Gender gender) {
 		super();
 		this.subscriberId = subscriberId;
 		this.fullName = fullName;
 		this.emailId = emailId;
 		this.mobile = mobile;
 		this.subscriptions = subscriptions;
+		this.gender=gender;
+	}
+	
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 	public Long getSubscriberId() {

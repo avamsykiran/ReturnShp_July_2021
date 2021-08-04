@@ -12,6 +12,7 @@ public interface SubscriberService {
 	List<Subscriber> getAll();
 	Subscriber getById(Long subId);
 	Subscriber add(Subscriber subscriber);
+	Subscriber update(Subscriber subscriber) throws D2HException;
 	
 	Subscription addSubcription(Long subId,Long chId) throws D2HException;
 	List<SubscriptionDetailsForSubscriber> getAllSubscriptionsOf(Long subId);

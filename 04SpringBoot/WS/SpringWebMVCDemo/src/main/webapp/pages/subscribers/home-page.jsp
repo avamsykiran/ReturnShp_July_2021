@@ -22,10 +22,13 @@
 					<c:forEach var="s" items="${subscribers}">
 						<tr>
 							<td>${s.subscriberId }</td>
-							<td>${s.fullName}</td>
+							<td>
+								<i class="fa ${s.gender=='GENT'?'fa-male':'fa-female' }"> ${s.fullName} </i>
+							</td>
 							<td>${s.emailId}</td>
 							<td>${s.mobile }</td>
 							<td>
+								<a href="/subscribers/edit/${s.subscriberId}" class="btn btn-sm btn-secondary">EDIT</a>
 								<a href="/subscriptions/${s.subscriberId}" class="btn btn-sm btn-info">SUBSCRIPTIONS</a>
 							</td>
 						</tr>
