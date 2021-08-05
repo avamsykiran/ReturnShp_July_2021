@@ -188,10 +188,62 @@ Spring Web MVC
                                   https://www.google.com/search?q=apples
           @PathVaraible           url/value/value   
                                   http://localhost:7777/subscriptions/5
-          @ModelAttribute         Form Data having multiple fields and fetechs the form data intoa a Model Object.
+          @ModelAttribute         Form Data having multiple fields and fetechs the form data into a Model Object.
           @RequestBody
 
           @ExceptionHandler
 
+
+  Dynamic Wwb Applciation
+
+      Server                                                            client
+            Server-sise-executing programs <-------------------------- REQ
+                  generate dynamic html -------html + css+ js -------> RESP
+
+  Single Page Application
+
+
+      Server                                                                  client
+                  <-------------------------------------------------------- First REQ    
+          ui-bundle (javascript(spa framework) + CSS +index.htm) ---------> First RESP
+                                                                                new pages are generated
+                                                                                dynamically using javascript on 
+                                                                                the client side
+
+          REST api <------------------------------------------------------ REQ for data
+                  -----------------JSON/XML-------------------------------> RESP, data is extreacted from the 
+                                                                              resposne is wrapped in a dynamically
+                                                                              generated html and pusehed on to
+                                                                              the page.
+
           
-          
+
+  Spring REST api
+  -------------------------------------------------------------------------
+      
+      REST      Representational State Transfer
+
+      @RestController = @Controller + @ResponseBody
+
+      @RestController
+      @RequestMapping("/emps")
+      class EmployeeApi{
+
+            actins do not return views any more but only models and httpstatus
+            we use httpstatus to report sucessful execution or errosome execution
+
+            HttpStatus
+              1xx         a req is recieved and under process, taken care by the web-server layer
+              2xx         indicate the req is processed successfully, 200-OK
+              3xx         a req is beign redirected....,taken care by the web-sever layer
+              4xx         indicate that req could not fulfilled because of client side problem
+              5xx         indicate that req could not fulfilled because of server side problem
+      }
+            
+      /entities
+            GET         retirve entities
+            POST        insert an entity
+            PUT         update an entity
+            PATCH       partial updation on a entity
+            DELETE      delete an entity
+
