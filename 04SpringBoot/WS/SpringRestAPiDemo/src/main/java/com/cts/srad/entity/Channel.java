@@ -3,6 +3,7 @@ package com.cts.srad.entity;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +39,7 @@ public class Channel implements Comparable<Channel>,Serializable{
 	private Double monthlyFee;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "subpId.channel")
+	@OneToMany(mappedBy = "subpId.channel",cascade = CascadeType.DETACH)
 	private Set<Subscription> subscriptions;
 
 	

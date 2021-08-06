@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.srad.exception.D2HException;
+import com.cts.srad.model.ErrorWrapper;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -20,15 +21,16 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(D2HException.class)
-	public ResponseEntity<String> handleD2HException(D2HException exp) {
+	public ResponseEntity<ErrorWrapper> handleD2HException(D2HException exp) {
 		logger.error(exp.getMessage());
-		return new ResponseEntity<String>(exp.getMessage(),HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(new ErrorWrapper(exp.getMessage()),HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<String> handleUnhandledException(Exception exp) {
+	public ResponseEntity<ErrorWrapper> handleUnhandledException(Exception exp) {
 		logger.error(exp.getMessage());
-		return new ResponseEntity<String>("We regeret the inconvinince, something went wrong on server",
+		return new ResponseEntity<>(
+				new ErrorWrapper("We regeret the inconvinince, something went wrong on server"),
 				HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
