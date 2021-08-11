@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.cts.srad.entity.Subscriber;
+import com.cts.srad.entity.Subscription;
 import com.cts.srad.exception.D2HException;
+import com.cts.srad.model.SubscriptionDetailsForSubscriber;
 import com.cts.srad.service.SubscriberService;
 
 @RestController
@@ -38,6 +39,11 @@ public class SubscriberController {
 		return new ResponseEntity<>(subscriberService.getById(subId), HttpStatus.OK);
 	}
 
+	@GetMapping("/{subId}/subscriptions")
+	public ResponseEntity<List<SubscriptionDetailsForSubscriber>> getSubscriptionsAction(@PathVariable(name = "subId")Long subscriberId) throws D2HException {
+		return new ResponseEntity<>(subscriberService.getAllSubscriptionsOf(subscriberId),HttpStatus.OK);
+	}
+	
 	@PostMapping
 	public ResponseEntity<Subscriber> subscriberAddAction(@Valid @RequestBody Subscriber subscriber,
 			BindingResult result) throws D2HException {

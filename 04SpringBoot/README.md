@@ -247,3 +247,8 @@ Spring Web MVC
             PATCH       partial updation on a entity
             DELETE      delete an entity
 
+  Spring Data Rest
+  --------------------------------------------------------------------------
+    is a sprng module that generates the repos and rest end points autoamtically.
+
+  
