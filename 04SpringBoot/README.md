@@ -251,4 +251,55 @@ Spring Web MVC
   --------------------------------------------------------------------------
     is a sprng module that generates the repos and rest end points autoamtically.
 
-  
+  Spring Security On REST api
+  --------------------------------------------------------------------------
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+    Basic Http Auth
+    1. The suernmae and password msut accompany each and every request
+    2. the passsword is transported in clear text.
+
+    Token Based Auth
+    1. Client has to request for a token by submitting the uid and pwd
+      in a secure post req as req body but not as headers.
+    2. Server will generate a hashed secret called token.
+    3. Client can pass thsi token in the foregoing req headers.
+      + username and passeord are sent only once at the time authentication
+      + the password is always masked as it goes in the post req body even for the first time
+
+    JWT?
+    Json Web Token
+        {
+          token:"header|payload|signature in hash mode",
+        }
+        <dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+
+    WebSecurityConfiguerAdapter
+      The whole security customization or configuaration must happen.
+
+        AuthenticationManagerBuilder
+          AutenticationManager
+
+        UserDeatilsService::loadUserByUserName
+
+        HttpSecurity
+          configuare the access rules.
+
+        AccessEntryPoint
+          receive any exception while AuthenticationManger is authenticating the suer.
+        
+        BCryptPasswordEncoder
+
+        Security Filter
+          to validate the incoming jwt tokens
+
+
+
