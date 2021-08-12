@@ -285,21 +285,23 @@ Spring Web MVC
     WebSecurityConfiguerAdapter
       The whole security customization or configuaration must happen.
 
+        UserDetailsService::loadUserByUserName
+        
+        AuthenticationEntryPoint
+          receive any exception while AuthenticationManger is authenticating the suer.
+        
+        Security Filter
+          to validate the incoming jwt tokens
+      
+        BCryptPasswordEncoder
+
         AuthenticationManagerBuilder
           AutenticationManager
-
-        UserDeatilsService::loadUserByUserName
 
         HttpSecurity
           configuare the access rules.
 
-        AccessEntryPoint
-          receive any exception while AuthenticationManger is authenticating the suer.
-        
-        BCryptPasswordEncoder
-
-        Security Filter
-          to validate the incoming jwt tokens
+       
 
 
 
