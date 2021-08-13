@@ -12,6 +12,6 @@ import com.cts.srad.entity.Channel;
 public interface ChannelRepo extends JpaRepository<Channel, Long> {
 
 	@Query("SELECT ch FROM Channel ch WHERE ch not in "
-			+ "(SELECT s.subpId.channel FROM Subscription s WHERE s.subpId.subscriber.subscriberId=:subscriberId)")
+			+ "(SELECT s.subpId.channel FROM Subscription s WHERE s.subpId.subscriber.userId=:subscriberId)")
 	List<Channel> getChannelsNotSubscribedBy(Long subscriberId);
 }
