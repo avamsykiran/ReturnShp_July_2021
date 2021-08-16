@@ -2,6 +2,7 @@ package com.cts.srad.controller;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class ChannelController {
 		return ch!=null?new ResponseEntity<Channel>(ch,HttpStatus.OK):new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
+	@RolesAllowed({"ADMIN"})
 	@PostMapping
 	public ResponseEntity<Channel> addChannelAction(
 			@Valid @RequestBody Channel channel,BindingResult result
@@ -48,6 +50,7 @@ public class ChannelController {
 		return saveOrUpdate(channel, result, null);
 	}
 	
+	@RolesAllowed({"ADMIN"})
 	@PutMapping("/{chId}")
 	public ResponseEntity<Channel> saveChannelAction(
 			@Valid @RequestBody Channel channel,BindingResult result,
@@ -56,6 +59,7 @@ public class ChannelController {
 		return saveOrUpdate(channel, result, chId);
 	}
 	
+	@RolesAllowed({"ADMIN"})
 	@DeleteMapping("/{chId}")
 	public ResponseEntity<Void> delChannelAction(@PathVariable("chId")Long chId) throws D2HException {
 		chService.delete(chId);

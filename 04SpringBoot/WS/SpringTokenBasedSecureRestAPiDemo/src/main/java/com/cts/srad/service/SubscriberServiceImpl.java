@@ -6,9 +6,11 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cts.srad.entity.Channel;
+import com.cts.srad.entity.D2HUserRole;
 import com.cts.srad.entity.Subscriber;
 import com.cts.srad.entity.Subscription;
 import com.cts.srad.entity.SubscriptionId;
@@ -29,6 +31,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 	
 	@Autowired
 	private ChannelRepo channelRepo;
+	
+
+	@Autowired
+	private PasswordEncoder pwdEnc;
+
 
 	@Override
 	public List<Subscriber> getAll() {
@@ -43,6 +50,8 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Transactional
 	@Override
 	public Subscriber add(Subscriber subscriber) {
+		subscriber.setPassword(pwdEnc.encode(subscriber.getPassword()));
+		subscriber.setRole(D2HUserRole.SUBSCRIBER);
 		return subscriberRepo.save(subscriber);
 	}
 

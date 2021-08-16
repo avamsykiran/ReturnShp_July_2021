@@ -46,11 +46,6 @@ public class SubscriberController {
 		return new ResponseEntity<>(subscriberService.getAllSubscriptionsOf(subscriberId),HttpStatus.OK);
 	}
 	
-	@PostMapping
-	public ResponseEntity<Subscriber> subscriberAddAction(@Valid @RequestBody Subscriber subscriber,
-			BindingResult result) throws D2HException {
-		return saveOrUpdateAction(subscriber, result, null);
-	}
 
 	@PutMapping("/{subId}")
 	public ResponseEntity<Subscriber> subscriberSaveAction(@Valid @RequestBody Subscriber subscriber,
