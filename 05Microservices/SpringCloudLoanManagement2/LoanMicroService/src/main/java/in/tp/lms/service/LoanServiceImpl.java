@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import in.tp.lms.entity.LoanEntity;
 import in.tp.lms.entity.LoanStatus;
@@ -17,12 +15,9 @@ import in.tp.lms.repo.LoanRepo;
 
 @Service
 public class LoanServiceImpl implements LoanService {
-
-	@Value("${loantypeurl}")
-	private String loanTypeUrl;
 	
 	@Autowired
-	private RestTemplate rest;
+	private LoanTypeProxyService loanTypeProxy;
 	
 	@Autowired
 	private LoanRepo repo;
@@ -54,13 +49,13 @@ public class LoanServiceImpl implements LoanService {
 			result.setStatus(source.getStatus());
 			result.setLoanTypeId(source.getLoanTypeId());
 			
-			LoanTypeModel typeSource = rest.getForObject(
-					loanTypeUrl+"/"+source.getLoanTypeId(), 
-					LoanTypeModel.class);
+			LoanTypeModel typeSource = 
+					loanTypeProxy.getLoanType(source.getLoanTypeId());
 			
 			if(typeSource!=null) {
 				result.setRate(typeSource.getInterestRatePerAnum());
 				result.setLoanTypeTitle(typeSource.getTypeTitle());
+				result.setPort(typeSource.getPort());
 			}
 		}
 		return result;
@@ -68,15 +63,17 @@ public class LoanServiceImpl implements LoanService {
 	
 	@Override
 	public List<LoanModel> findAll() {
-		return repo.findAll().
-				stream().
-				map(e -> of(e)).
-				collect(Collectors.toList());
+		return repo.findAll().stream().map(e -> of(e)).collect(Collectors.toList());
 	}
 
 	@Override
 	public LoanModel findById(long id) {
-		return of(repo.findById(id).orElse(null));
+		LoanModel loanModel=null;
+		LoanEntity entity = repo.findById(id).orElse(null);
+		if(entity!=null) {
+			loanModel = of(entity);
+		}
+		return loanModel;
 	}
 
 	@Override

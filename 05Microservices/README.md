@@ -15,3 +15,16 @@ Microservices
         3. Routing - API Gateway
         4. Descoverability - Discovery Service
         5. Fault Tolerence - Circuit Breaking
+
+        Step1: Interservice Communciation through RestTemplate
+                LoanTypeMicroservice  
+                LaonMicroservice        that consume LonaTypeMicroserice using
+                                        RestTemplate
+
+        Step2: Interservice Communciation through FeignClient
+                LoanTypeMicroservice  
+                        execute multiple instances of LoanTypeMicroservice  
+
+                LaonMicroservice        that consume LonaTypeMicroserice using
+                                        FeignClient
+                                        Ribbon for Load Balancing
