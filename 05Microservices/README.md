@@ -21,10 +21,39 @@ Microservices
                 LaonMicroservice        that consume LonaTypeMicroserice using
                                         RestTemplate
 
-        Step2: Interservice Communciation through FeignClient
+        Step2: Client Side Load Balancing using Ribbon
                 LoanTypeMicroservice  
                         execute multiple instances of LoanTypeMicroservice  
 
                 LaonMicroservice        that consume LonaTypeMicroserice using
                                         FeignClient
-                                        Ribbon for Load Balancing
+                                        Ribbon for Client Side Load Balancing
+
+        Step3: Discovery Service Pattern
+                LoanTypeMicroservice    Eureka Client
+                LaonMicroservice        Eureka Client
+                LMSDiscoveryService     using Eureka DiscoveryService
+
+        Step4: API Gateway Pattern and circuit breaking using Hystrex
+                LoanTypeMicroservice    
+                LaonMicroservice        
+                LMSDiscoveryService    
+                LMSGatewayService       API Gateway using Zuul + Hystrex
+                                        Cicuit Breaking using Hystrex
+
+        Step5: External configuaration
+                LoanTypeMicroservice  
+                LaonMicroservice   
+                LMSDiscoveryService
+                LMSGatewayService     
+                LMSConfigService        Git Repo based External Configuaration
+
+        Step6: Distributed Tracing and Log Aggregation
+                LoanTypeMicroservice  
+                LaonMicroservice   
+                LMSDiscoveryService
+                LMSGatewayService     
+                LMSConfigService    
+
+                        Config Spring Actuator, Sleuth and Zipkin Server.
+
