@@ -39,14 +39,14 @@ Microservices
                 LaonMicroservice        
                 LMSDiscoveryService    
                 LMSGatewayService       API Gateway using Zuul + Hystrex
-                                        Cicuit Breaking using Hystrex
+                                        Circuit Breaking using Hystrex
 
         Step5: External configuaration
                 LoanTypeMicroservice  
                 LaonMicroservice   
                 LMSDiscoveryService
                 LMSGatewayService     
-                LMSConfigService        Git Repo based External Configuaration
+                LMSConfigService        Git Repo based External Configuaration 
 
         Step6: Distributed Tracing and Log Aggregation
                 LoanTypeMicroservice  
@@ -56,4 +56,15 @@ Microservices
                 LMSConfigService    
 
                         Config Spring Actuator, Sleuth and Zipkin Server.
+                        
+                        java -jar zipkin-server-1.30.3-exec.jar
+                        http://localhost:9411/zipkin/
 
+                        <dependency>
+                         <groupId>org.springframework.cloud</groupId>
+                         <artifactId>spring-cloud-starter-zipkin</artifactId>
+                        </dependency>
+                        <dependency>
+                         <groupId>org.springframework.cloud</groupId>
+                         <artifactId>spring-cloud-starter-sleuth</artifactId>
+                        </dependency>
