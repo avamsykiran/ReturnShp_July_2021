@@ -57,7 +57,7 @@ Microservices
 
                         Config Spring Actuator, Sleuth and Zipkin Server.
                         
-                        java -jar zipkin-server-1.30.3-exec.jar
+                        java -jar zipkin-server-2.23.2-SNAPSHOT-exec.jar
                         http://localhost:9411/zipkin/
 
                         <dependency>
