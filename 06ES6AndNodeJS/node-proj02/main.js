@@ -52,3 +52,36 @@ function f(){
 }
 
 f();
+
+/*
+... called rest operator used in the arglist to provide var args.
+... called spread operator
+
+convert an array into a comma seperated values literal.
+convert an object into a comma seperated key-values literal.
+
+*/
+
+let a1 = [1,2,3,4,5];
+let a2 = [7,8,9,0];
+let a3 = [a1,a2]; //a3 is a two-dim array
+let a4 = [...a1,6,...a2];
+
+console.log(a1);
+console.log(a2);
+console.log(a3);
+console.log(a4);
+
+
+let emp1 = new Employee(101, "Vamsy", "Aripaka", 54000);
+let emp2 = {...emp1,id:102};
+
+console.log(emp1);
+console.log(emp2);
+
+//destructured assignment
+
+//let id = emp1.id;
+//let salary = emp1.salary;
+
+let {id,salary} = emp1;
