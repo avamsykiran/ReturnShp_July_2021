@@ -1,0 +1,12 @@
+.centered{
+    margin:auto;
+    display:block;
+}
+
+.bordered{
+    border:1px solid #000000;
+}
+
+.roundCornered{
+    border-radius: 15px;
+}

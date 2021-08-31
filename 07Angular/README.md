@@ -232,14 +232,62 @@ Angular
 
         cd proj-namne
             -> ng serve --port portNumber -o                transpell and package and host on a dev server
+            -> ng g component Name --skipTests
+            -> ng g module Name 
+            -> ng g directive Name --skipTests
+            -> ng g pipe Name --skipTests
+            -> ng g service Name --skipTests
+            -> ng g class Name --skipTests
+            -> ng g interface Name 
+            -> ng g guard Name --skipTests
+            -> ng g interceptor Name --skipTests
             
-    Angular Data Bindning
+    Angular Data Binding
     ---------------------------------------------------------------------------------
         1. Interpolation
+
+                {{angularExpression}}
+            
         2. One way data binding
+
+                <tagName [attribute]="field"></tagName>
+
+                <tagName attribute="valueOfTheAttrib"></tagName>
+
+                <table width="100"></table>
+
+                <table [width]="x"></table>
+
         3. Two way data binding
+
+                can happen only on form elements.
+
+                it cna be done only with a built-in directive (attribute) ngModel,
+                from FormsModule (@angular/forms)
+
+                <input type="text" name="tb1" [(ngModel)]="userName" />
+
         4. Event Binding
+
+                is to bind the eventHandler methods to the event directives (attributes).
+
+                HTML Event Attributes           Angular Event Directives
+                ------------------------------------------------------------------
+                onClick                         click
+                onDblClick                      dblclick
+                onBlur                          blur
+                onChange                        change
+                onFocus                         focus
+                onMouseOver                     mouseover
+                onSubmit                        ngSubmit
+
+                <tag (eventDirective)="method()"></tag>
+
         5. Style and Class Binding
+
+                <tag [style.cssProperty]="field"></field>
+
+                <tag [class]="{'class1':booleanFlag,'class2':booleanFlag2}"></tag>
 
 
 

@@ -1,0 +1,18 @@
+<h3>{{welcomeMessage}}</h3>
+
+<div>
+    <img [src]="logo" (click)="whenImgClicked()"  [style.width.px]="imgWidth" 
+    [class]="{'centered':center,'bordered':border,'roundCornered':round}"/>
+</div>
+
+<form>
+    <input type="text" name="t1" [(ngModel)]="welcomeMessage"/> <br />
+    <label>
+        Width: 
+        <input type="range" min="50" max="400" [(ngModel)]="imgWidth" name="r1" />
+        {{imgWidth}} px
+    </label> <br/>
+    <label> <input type="checkbox" name="c1" [(ngModel)]="center"/> Align Center </label> <br />
+    <label> <input type="checkbox" name="c2" [(ngModel)]="border"/> Apply Borders </label> <br />
+    <label> <input type="checkbox" name="c3" [(ngModel)]="round"/> Apply Round Corneres </label> 
+</form>
