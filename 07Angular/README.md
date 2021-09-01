@@ -212,8 +212,70 @@ Angular
                         </html>
 
         3. Directives
+
+                        in-built Directives
+                        -----------------------
+                            Event Directive
+                                click,dblClick,focus....ngSubmit
+                            
+                            Structural Directives
+                                *ngIf
+                                *ngFor
+                                ngSwitch
+                                    *ngSwitchCase
+
+                            Others  
+                                ngModel
+                                ngForm
+                                ngClass
+                                routeLink
+                                routerLinkActive
+                                formGroup
+                                formControlName ....etc
+
+
+                        Custom Directives
+                        ------------------------
+                        @Directive({
+                            name:'onlyNumbers'
+                        })         
+                        export class OnlyNumbersDirective {
+                            ........
+                        }
         4. Pipes
+                        is a special angular arrangement used
+                        to transform a value just before it is rendered.
+
+                        inbuilt pipes
+                        ------------------
+                            lowercase
+                            uppercase
+                            titlecase
+                            number
+                            percent
+                            currency
+                            date
+                            async
+                            json
+
+                        custom pipe
+                        -------------
+                        @Pipe({
+                            name:'inWords'
+                        })         
+                        export class InWordsPipe implement NgTransform {
+                            transform(value:any):any{
+                                ..........
+                            }
+                        }
         5. Services
+
+                        @Injectable({
+                            providedIn:'root'
+                        })         
+                        export class MyAPICallService {
+                            //..do rest api calls here....
+                        }
         
     Angular CLI
     ---------------------------------------------------------------------------------
@@ -289,7 +351,22 @@ Angular
 
                 <tag [class]="{'class1':booleanFlag,'class2':booleanFlag2}"></tag>
 
+    Angular Bootstrap Integration
+    ---------------------------------------------------------------------------------
 
+        npm install --save bootstrap@4.0.0
+
+        node_modules
+        ----------------
+            bootstrap
+                dist
+                    css
+                        bootstrap.min.css
+        
+
+        include this file into 'styles:[]' section in angular.json
+
+    
 
 
 

@@ -8,7 +8,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title: string;
 
+  showWelcome:boolean;
+  showCompute:boolean;
+
+  team:string[];
+
   constructor(){
     this.title="My First Angular Application";
+    this.showCompute=false;
+    this.showWelcome=false;
+    this.team=["Vamsy","Swetha","Desara","Manipreeth","Nikitha","Revindar","Soma"];
   }
 }
