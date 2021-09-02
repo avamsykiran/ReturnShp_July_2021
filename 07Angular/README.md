@@ -366,10 +366,245 @@ Angular
 
         include this file into 'styles:[]' section in angular.json
 
-    
+    Angular Routing
+    -------------------------------------------------------------
+
+        RouterModule
+                Routes      Route[]
+                                path            urlSegment
+                                component       Component
+                                pathMatch       'startsWith'|'full'
+                                redirectTo
+                                canActivate
+                                canDeactivate
+                                canLoad
+                                children
+
+                .forRoot(routes)            globally on the entire app
+                .forChild(routes)           local to a given module only
+
+                <router-outlet></router-outlet>
+
+                routerLink              directive to be used as an attrb on 'a' element
+
+                routerLinkActive        holding the name of class 
+                                        that has to be appleid to a link
+                                        that is currently loaded on the page.
+
+                Router                  is a service used to navigate programatically,
+                                        .navigateByUrl("url")
+                                        .navigate(["pathSeg"],{queryParams:{}...etc})
+
+                ActivatedRoute          is a service used to retrive information
+                                        about current route like
+                                            current path
+                                            query strings
+                                            path params ...etc
+
+    Angular Service
+    -------------------------------------------------------------
+
+            a service is used to hold bussiness logic.
+
+    Angular Dependency Injection
+    -------------------------------------------------------------
+        angular can create objects for all of its resources
+        and supply them to the place where they are needed.
+
+        Root Injector           root module
+            one injector per modules                     providers:[]
+                one injector per component               providers:[]
+                one injector per pipe                    providers:[]
+                one injector per directive ..etc.,       providers:[]
+
+        @Injectable({
+            providedIn:'root'
+        })
+        class MySerive{
+
+        }
+
+    Angular Forms
+    -------------------------------------------------------------      
+
+            Template Driven Forms
+
+                        FormsModule
+                            ngForm
+                            ngModel
+
+                        write as lot on the template side
+                        we will a very less control over the form from the controller side
+                        it is hard to test using any javascript testing library
+
+            Model Driven Forms / Reactive Forms
+
+                        ReactiveFormsModule
+                            FormGroup
+                            FormControl
+
+                            formControlName
+                            formGroup
+
+                        write less on tempalte side and more on the controller side
+                        as a result we have more programtic control on the form and its validations
+                        custome validations are easy to intergrate
+                        the validation can be done asynchronously
+                        easier to test.
+
+            Form Validation Properties 
+            ------------------------------------
+
+                on ngForm and FormGroup
+                            valid           
+                            invalid
+
+                on ngModel  and   FormControl
+                            touched     untouched
+                            dirty       prestine
+                            invalid     valid
+
+                            errors
+                            errors.required
+                            errors.min
+                            errors.max
+                            errors.pattern
+                            errors.minlength
+                            errors.maxlength
+                            errors.email
+                            ...etc
+
+    Angular Components With Attributes,Events and Passable Content.
+    -----------------------------------------------------------------    
+
+        Passable Content
+            <ng-content></ng-content>
+
+        Component Attriubtes
+            @Input()
+
+        Emiting Events
+            EventEmiter        
+            @Output()
+            
+
+    RxJS
+    -------------------------------------------------------------------
+
+        is a reactive javascript library.
+
+            let job = (resolve,reject) => {
+                //executed sucessfully we call 
+                resolve(resultantData);
+
+                //an error is encoutnred and the job did not eomplte.
+                //then we call
+                reject(err);
+            }
+
+            let p = new Promise(job);
+
+            p.then(
+                (resultantData) => {}, //on successful completion
+                (err) => {} //when Error occurs
+            );
+
+            ----------------------------------------------------------------
+
+            let job = (observer) => {
+
+                observer.next(resultantData);
+
+                observer.complete();
+
+                observer.error(err);
+            }
+
+            let ob = new Observable(job);
+
+            ob.subscribe(
+                (resultantData) => {}, //onNext
+                (err) => {}, //onError
+                ()=>{} //onComplete
+            )
+
+            rxjs Operators
+            ----------------------------------------------
+
+                map
+                filter
+                merge
+                joinFork
+                catchError
+                    ...etc
+
+    Angular LifeCycle & Hooks
+    ----------------------------------------------------------------------------------
+
+            constructor
+            ngOnChanges                      when the data-bound property variations happen (form control gets renewed )
+            ngOnInit                         When Angular has completed the creation and introduction of components
+            ngDoCheck                        whenever there is a vitality to review the input property of a component 
+                    ngAfterContentInit       when every content of the components gets introduced and checked for 
+                                            the first time
+                    ngAfterContentChecked   
+                    ngAfterViewInit
+                    ngAfterViewChecked
+            ngOnDestroy
+
+    HttpClient
+    ------------------------------------------------------------------------------------
+
+        HttpClientModule
+
+            HttpClient
+                        get(url)  :Observable
+                        put(url,reqBody) :Observable
+                        post(url,reqBody) :Observable
+                        delete(url) :Observable
+
+    Modularization
+    --------------------------------------------------------------------------------
+    Domain: A domain NgModule is organized around a feature, business domain, or user experience.
+    Routed: The top component of the NgModule acts as the destination of a router navigation route.
+    Routing: A routing NgModule provides the routing configuration for another NgModule.
+    Service: A service NgModule provides utility services such as data access and messaging.
+    Widget: A widget NgModule makes a component, directive, or pipe available to other NgModules.
+    Shared: A shared NgModule makes a set of components, directives, and pipes available to other NgModules.
+
+            NgModule	Declarations	Providers	    Exports	        Imported by
+            ------------------------------------------------------------------------------
+            Domain	        Yes	        Rare	        Top component	Another domain, AppModule
+            Routed	        Yes	        Rare	        No	            None
+            Routing	        No	        Yes (Guards)	RouterModule	Another domain (for routing)
+            Service	        No	        Yes	            No	            AppModule
+            Widget	        Yes	        Rare	        Yes	            Another domain
+            Shared	        Yes	        No	            Yes	            Another domain
+
+    ng g module Shared
+    ng g module Widgets
+    ng g module Services --module app.module
+
+    lazy loading a domain module
+    -------------------------------------------------------------
+    ng g module EntityDoamin --route entity --module app.module
+
+    Router Guards
+    ----------------------------------------------------------------------------------
+
+    is used to protect a route from being accessed
+    only when it is allowed to access.
+
+    Angular provides four types of RouterGuards (interfaces)
+
+        CanActivate            control if a route can be entered or not
+        CanDeactivate          control if a route can be left or not
+        CanLoad                controls if a lazy loaded route should be laoded or not
+        CanChildActivate       control if child-routes can be entered or not
 
 
 
-    
+
+        
 
 

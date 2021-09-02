@@ -1,0 +1,25 @@
+
+<div class="col-sm-6 mx-auto">
+    <h4>Users List</h4>
+
+    <div *ngIf="!users || users.length===0" class="alert alert-info">
+        <strong>No records available</strong>
+    </div>
+
+    <table *ngIf="users && users.length>0" class="table table-border table-hover">
+        <thead>
+            <tr>
+                <th>User#</th>
+                <th>Name</th>
+                <th>Email Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of users">
+                <td class="text-right">{{u.userId|number:'3.0-0'}}</td>
+                <td class="text-left">{{u.name|uppercase}}</td>
+                <td class="text-center">{{u.email|lowercase}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
