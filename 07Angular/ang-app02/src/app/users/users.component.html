@@ -2,9 +2,13 @@
 <div class="col-sm-6 mx-auto">
     <h4>Users List</h4>
 
-    <div *ngIf="!users || users.length===0" class="alert alert-info">
+    <app-message-box type="error">
+        This is a demo error message
+    </app-message-box>
+
+    <app-message-box *ngIf="!users || users.length===0" type="info">
         <strong>No records available</strong>
-    </div>
+    </app-message-box>
 
     <table *ngIf="users && users.length>0" class="table table-border table-hover">
         <thead>
@@ -12,6 +16,7 @@
                 <th>User#</th>
                 <th>Name</th>
                 <th>Email Id</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +24,11 @@
                 <td class="text-right">{{u.userId|number:'3.0-0'}}</td>
                 <td class="text-left">{{u.name|uppercase}}</td>
                 <td class="text-center">{{u.email|lowercase}}</td>
+                <td>
+                    <button class="btn btn-sm btn-danger" (click)="remove(u.userId)">
+                        DELETE
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>

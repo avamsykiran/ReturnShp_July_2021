@@ -15,4 +15,8 @@ export class UsersComponent {
     this.users=userService.getAll();
   }
 
+  remove(userId:number){
+    this.userService.deleteById(userId);
+    this.users=this.userService.getAll();
+  }
 }
