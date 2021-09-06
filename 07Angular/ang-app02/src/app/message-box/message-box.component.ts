@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input,EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-message-box',
@@ -10,6 +10,14 @@ export class MessageBoxComponent {
   @Input()
   type?:string;
 
-  constructor() { }
+  @Output()
+  onOkClicked:EventEmitter<void>;
 
+  constructor() {
+    this.onOkClicked=new EventEmitter<void>();
+  }
+
+  okClicked(){
+    this.onOkClicked.emit(); //we are raising an event, that the aprent msut handle
+  }
 }

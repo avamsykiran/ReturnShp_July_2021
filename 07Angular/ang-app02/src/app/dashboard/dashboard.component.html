@@ -1,0 +1,5 @@
+<div class="col-sm-5 mx-auto">
+    <app-message-box type="info" *ngFor="let msg of msgs; let i = index;" (onOkClicked)="deleteMsg(i)">
+        <strong>{{msg}}</strong>
+    </app-message-box>
+</div>

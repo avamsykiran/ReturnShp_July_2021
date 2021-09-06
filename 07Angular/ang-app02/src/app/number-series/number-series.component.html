@@ -1,0 +1,16 @@
+<div class="col-sm-10 mx-auto mb-2 border border-danger p-1">
+    <form class="form-inline mb-2" (ngSubmit)="doSeries()">
+        <label>Lower Bound</label>
+        <input type="number" name="lb" [(ngModel)]="lb" class="form-control mr-1"/>
+        <label>Upper Bound</label>
+        <input type="number" name="ub" [(ngModel)]="ub" class="form-control mr-1"/>
+        <button class="btn btn-sm btn-info" [disabled]="isJobInProgress">START</button>
+    </form>
+
+    <div *ngIf="err || results" class="border border-primary p-1 text-wrap">
+        <p *ngIf="err"><strong>{{err}}</strong></p>
+        <p *ngIf="results && results.length>0" class="text-wrap">
+            <span *ngFor="let n of results">{{n}}&nbsp;</span>
+        </p>
+    </div>
+</div>

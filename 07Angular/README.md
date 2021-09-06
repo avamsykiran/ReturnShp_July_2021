@@ -492,36 +492,18 @@ Angular
 
         is a reactive javascript library.
 
-            let job = (resolve,reject) => {
-                //executed sucessfully we call 
-                resolve(resultantData);
+            let job = (observer) => { //this is our BG operation
 
-                //an error is encoutnred and the job did not eomplte.
-                //then we call
-                reject(err);
-            }
+                observer.next(resultantData); .//is to pass soem data to the FG operation
 
-            let p = new Promise(job);
+                observer.complete();//this is to indicate FG that BG is done
 
-            p.then(
-                (resultantData) => {}, //on successful completion
-                (err) => {} //when Error occurs
-            );
-
-            ----------------------------------------------------------------
-
-            let job = (observer) => {
-
-                observer.next(resultantData);
-
-                observer.complete();
-
-                observer.error(err);
+                observer.error(err);//this is to indicate FC that BG ran into an error
             }
 
             let ob = new Observable(job);
 
-            ob.subscribe(
+            ob.subscribe(       //this is going to happen in the FG
                 (resultantData) => {}, //onNext
                 (err) => {}, //onError
                 ()=>{} //onComplete
