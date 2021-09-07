@@ -519,6 +519,13 @@ Angular
                 catchError
                     ...etc
 
+                let ob = service.doSoemthingReturnsObservable();
+                let ob2 =ob.pipe(
+                    map(.....),
+                    filter(....)
+                );
+                ob2.subscribe(.....);
+
     Angular LifeCycle & Hooks
     ----------------------------------------------------------------------------------
 

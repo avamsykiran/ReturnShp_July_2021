@@ -1,0 +1,33 @@
+<div class="container-fluid p-4">
+
+    <h4>Channels</h4>
+
+    <div class="alert alert-info p-1" *ngIf="!err && !channels">
+        <strong>Please wait while loading...</strong>
+    </div>
+
+    <div class="alert alert-danger p-1" *ngIf="err">
+        <strong>{{err}}</strong>
+    </div>
+
+    <div class="alert alert-info p-1" *ngIf="channels && channels.length==0">
+        <strong>No Records</strong>
+    </div>
+
+    <table class="table table-border table-stripped" *ngIf="channels && channels.length>0">
+        <thead>
+            <tr>
+                <th>Channel#</th>
+                <th>Name</th>
+                <th>Monthly Fee</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of channels">
+                <td>{{c.channelId}}</td>
+                <td>{{c.channelName|uppercase}}</td>
+                <td>{{c.monthlyFee|currency:'INR'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
