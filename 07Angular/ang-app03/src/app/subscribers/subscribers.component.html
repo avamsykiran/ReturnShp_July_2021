@@ -1,1 +1,39 @@
-<p>subscribers works!</p>
+
+
+    <h4>Subscribers </h4>
+    
+    <div class="alert alert-info p-1" *ngIf="!err && !subscribers">
+        <strong>Please wait.. Data is loading ....</strong>
+    </div>
+    
+    <div class="alert alert-danger p-1" *ngIf="err">
+        <strong>{{err}}</strong>
+    </div>
+    
+    <div class="alert alert-info p-1" *ngIf="subscribers && subscribers.length==0">
+        <strong>No Records Found</strong>
+    </div>
+    
+    <table class="table table-border table-stripped" *ngIf="subscribers && subscribers.length>0">
+        <thead>
+            <tr>
+                <th>Subscriber#</th>
+                <th>Subscriber Name</th>
+                <th>Subscriber Email</th>
+                <th>Subscriber Mobile</th>
+                <th>Subscriber Gender</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let s of subscribers">
+                <td>{{s.subscriberId}}</td>
+                <td>{{s.fullName}}</td>
+                <td>{{s.emailId}}</td>
+                <td>{{s.mobile}}</td>
+                <td>{{s.gender}}</td>
+                <td>
+                    <a [routerLink]="['/supSub',s.subscriberId]" class="btn btn-sm btn-info">Subscriptions</a>
+                </td>
+            </tr>
+    </table>

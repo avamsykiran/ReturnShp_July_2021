@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChannelsComponent } from './channels/channels.component';
 import { SubscribersComponent } from './subscribers/subscribers.component';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChannelsComponent,
-    SubscribersComponent
+    SubscribersComponent,
+    SubscriptionsComponent
   ],
   imports: [
     BrowserModule,

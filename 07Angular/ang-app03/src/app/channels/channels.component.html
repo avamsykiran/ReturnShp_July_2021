@@ -1,4 +1,3 @@
-<div class="container-fluid p-4">
 
     <h4>Channels</h4>
 
@@ -20,6 +19,7 @@
                 <th>Channel#</th>
                 <th>Name</th>
                 <th>Monthly Fee</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +27,10 @@
                 <td>{{c.channelId}}</td>
                 <td>{{c.channelName|uppercase}}</td>
                 <td>{{c.monthlyFee|currency:'INR'}}</td>
+                <td>
+                    <a [routerLink]="['/supCh',c.channelId]" class="btn btn-sm btn-info">Subscriptions</a>
+                </td>
             </tr>
         </tbody>
     </table>
-</div>
+

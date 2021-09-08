@@ -1,0 +1,33 @@
+
+    <h4>{{forWhom==="SUB"?subscriptions[0]?.subscriberName:subscriptions[0]?.channelName}} Subscriptions</h4>
+
+    <div class="alert alert-info p-1" *ngIf="!err && !subscriptions">
+        <strong>Please wait while loading...</strong>
+    </div>
+
+    <div class="alert alert-danger p-1" *ngIf="err">
+        <strong>{{err}}</strong>
+    </div>
+
+    <div class="alert alert-info p-1" *ngIf="subscriptions && subscriptions.length==0">
+        <strong>No Records</strong>
+    </div>
+
+    <table class="table table-border table-stripped" *ngIf="subscriptions && subscriptions.length>0">
+        <thead>
+            <tr>
+                <th>{{forWhom==="SUB"?"Channel":"Subscriber"}}</th>
+                <th>Monthly Fee</th>
+                <th>Activation Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let s of subscriptions">
+                <td>{{forWhom==="SUB"?s.channelName:s.subscriberName}}</td>
+                <td>{{s.monthlyFee|currency:'INR'}}</td>
+                <td>{{s.subscriptionActivationDate|date:'short'}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+

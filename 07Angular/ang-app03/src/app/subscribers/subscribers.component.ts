@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscriber } from '../models/subscriber';
+import { SubscribersService } from '../services/subscribers.service';
 
 @Component({
   selector: 'app-subscribers',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubscribersComponent implements OnInit {
 
-  constructor() { }
 
+  subscribers?: Subscriber[];
+  err?: string;
+
+  constructor(private subscriberService: SubscribersService) { }
+  
   ngOnInit(): void {
+    this.subscriberService.getAll().subscribe(
+      data => this.subscribers = data,
+      err => { console.log(err); err = "Could not upload data!"; }
+    );
   }
 
 }
