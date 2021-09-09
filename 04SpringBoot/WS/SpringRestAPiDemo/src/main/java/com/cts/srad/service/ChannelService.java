@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cts.srad.entity.Channel;
 import com.cts.srad.exception.D2HException;
+import com.cts.srad.model.SubscriptionDetails;
 
 public interface ChannelService {
 	List<Channel> getAll();
@@ -11,4 +12,5 @@ public interface ChannelService {
 	Channel add(Channel channel);
 	Channel update(Channel channel) throws D2HException;
 	void delete(Long chId)throws D2HException;
+	List<SubscriptionDetails> getAllSubscriptionsOf(Long channelId);
 }

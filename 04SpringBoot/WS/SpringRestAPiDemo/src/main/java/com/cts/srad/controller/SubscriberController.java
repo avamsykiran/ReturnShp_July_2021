@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,10 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cts.srad.entity.Subscriber;
 import com.cts.srad.entity.Subscription;
 import com.cts.srad.exception.D2HException;
-import com.cts.srad.model.SubscriptionDetailsForSubscriber;
+import com.cts.srad.model.SubscriptionDetails;
 import com.cts.srad.service.SubscriberService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/subscribers")
 public class SubscriberController {
 
@@ -40,7 +42,7 @@ public class SubscriberController {
 	}
 
 	@GetMapping("/{subId}/subscriptions")
-	public ResponseEntity<List<SubscriptionDetailsForSubscriber>> getSubscriptionsAction(@PathVariable(name = "subId")Long subscriberId) throws D2HException {
+	public ResponseEntity<List<SubscriptionDetails>> getSubscriptionsAction(@PathVariable(name = "subId")Long subscriberId) throws D2HException {
 		return new ResponseEntity<>(subscriberService.getAllSubscriptionsOf(subscriberId),HttpStatus.OK);
 	}
 	

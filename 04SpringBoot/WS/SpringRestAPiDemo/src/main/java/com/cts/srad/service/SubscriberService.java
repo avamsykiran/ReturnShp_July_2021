@@ -6,7 +6,7 @@ import com.cts.srad.entity.Channel;
 import com.cts.srad.entity.Subscriber;
 import com.cts.srad.entity.Subscription;
 import com.cts.srad.exception.D2HException;
-import com.cts.srad.model.SubscriptionDetailsForSubscriber;
+import com.cts.srad.model.SubscriptionDetails;
 
 public interface SubscriberService {
 	List<Subscriber> getAll();
@@ -15,7 +15,7 @@ public interface SubscriberService {
 	Subscriber update(Subscriber subscriber) throws D2HException;
 	
 	Subscription addSubcription(Long subId,Long chId) throws D2HException;
-	List<SubscriptionDetailsForSubscriber> getAllSubscriptionsOf(Long subId);
+	List<SubscriptionDetails> getAllSubscriptionsOf(Long subId);
 	
 	List<Channel> getChannelsNotSubscribedBy(Long subscriberId);
 }

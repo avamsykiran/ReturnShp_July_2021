@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { ChannelsComponent } from './channels/channels.component';
 import { SubscribersComponent } from './subscribers/subscribers.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { ChannelFormComponent } from './channel-form/channel-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChannelsComponent,
     SubscribersComponent,
-    SubscriptionsComponent
+    SubscriptionsComponent,
+    ChannelFormComponent
   ],
   imports: [
     BrowserModule,

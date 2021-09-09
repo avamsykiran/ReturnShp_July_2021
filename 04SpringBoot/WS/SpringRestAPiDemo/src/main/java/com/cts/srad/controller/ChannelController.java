@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.srad.entity.Channel;
 import com.cts.srad.exception.D2HException;
+import com.cts.srad.model.SubscriptionDetails;
 import com.cts.srad.service.ChannelService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/channels")
 public class ChannelController {
 
@@ -37,6 +40,11 @@ public class ChannelController {
 	public ResponseEntity<Channel> getChannelByIdAction(@PathVariable("chId")Long chId) {
 		Channel ch = chService.getById(chId);
 		return ch!=null?new ResponseEntity<Channel>(ch,HttpStatus.OK):new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/{chId}/subscriptions")
+	public ResponseEntity<List<SubscriptionDetails>> getSubscriptionsAction(@PathVariable(name = "chId")Long channelId) throws D2HException {
+		return new ResponseEntity<>(chService.getAllSubscriptionsOf(channelId),HttpStatus.OK);
 	}
 	
 	@PostMapping

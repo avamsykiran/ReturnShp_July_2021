@@ -28,9 +28,12 @@
                 <td>{{c.channelName|uppercase}}</td>
                 <td>{{c.monthlyFee|currency:'INR'}}</td>
                 <td>
+                    <a [routerLink]="['/editChannel',c.channelId]" class="btn btn-sm btn-info mr-1"> EDIT </a>
+                    <button class="btn btn-sm btn-danger mr-1" (click)="delete(c.channelId)">
+                        DELETE
+                    </button>
                     <a [routerLink]="['/supCh',c.channelId]" class="btn btn-sm btn-info">Subscriptions</a>
                 </td>
             </tr>
         </tbody>
     </table>
-

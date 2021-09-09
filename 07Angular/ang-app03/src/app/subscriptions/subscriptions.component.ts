@@ -11,11 +11,13 @@ import { SubscriptionsService } from '../services/subscriptions.service';
 })
 export class SubscriptionsComponent implements OnInit {
 
-  subscriptions?:SubscriptionDetails[];
+  subscriptions:SubscriptionDetails[];
   err?:string;
   forWhom?:string;
 
-  constructor(private activatedRouter:ActivatedRoute,private supService:SubscriptionsService) { }
+  constructor(private activatedRouter:ActivatedRoute,private supService:SubscriptionsService) {
+    this.subscriptions=[];
+  }
 
   ngOnInit(): void {
  

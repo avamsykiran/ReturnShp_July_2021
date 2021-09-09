@@ -2,18 +2,45 @@ package com.cts.srad.model;
 
 import java.time.LocalDate;
 
-public class SubscriptionDetailsForSubscriber {
+public class SubscriptionDetails {
 
+	private String subscriberName;
 	private String channelName;
+	private double monthlyFee;
 	private LocalDate subscriptionActivationDate;
 
-	public SubscriptionDetailsForSubscriber() {
+	public SubscriptionDetails() {
 	}
 
-	public SubscriptionDetailsForSubscriber(String channelName, LocalDate subscriptionActivationDate) {
+	public SubscriptionDetails(String channelName, LocalDate subscriptionActivationDate) {
 		super();
 		this.channelName = channelName;
 		this.subscriptionActivationDate = subscriptionActivationDate;
+	}
+	
+	public SubscriptionDetails(String subscriberName, String channelName, double monthlyFee,
+			LocalDate subscriptionActivationDate) {
+		super();
+		this.subscriberName = subscriberName;
+		this.channelName = channelName;
+		this.monthlyFee = monthlyFee;
+		this.subscriptionActivationDate = subscriptionActivationDate;
+	}
+
+	public String getSubscriberName() {
+		return subscriberName;
+	}
+
+	public void setSubscriberName(String subscriberName) {
+		this.subscriberName = subscriberName;
+	}
+
+	public double getMonthlyFee() {
+		return monthlyFee;
+	}
+
+	public void setMonthlyFee(double monthlyFee) {
+		this.monthlyFee = monthlyFee;
 	}
 
 	public String getChannelName() {
@@ -55,7 +82,7 @@ public class SubscriptionDetailsForSubscriber {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SubscriptionDetailsForSubscriber other = (SubscriptionDetailsForSubscriber) obj;
+		SubscriptionDetails other = (SubscriptionDetails) obj;
 		if (channelName == null) {
 			if (other.channelName != null)
 				return false;

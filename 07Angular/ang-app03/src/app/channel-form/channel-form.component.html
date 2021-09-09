@@ -1,0 +1,29 @@
+<div class="col-sm-6 mx-auto">
+    <h4>{{isEditing?"Edit":"New"}} Channel</h4>
+
+    <form class="form" [formGroup]="chForm" (ngSubmit)="formSubmited()">
+        <div class="form-group">
+            <label>Channel Id</label>
+            <input type="number" formControlName="channelId" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label>Channel Name</label>
+            <input type="text" formControlName="channelName" class="form-control" />
+            <div class="alert alert-danger" *ngIf="channelName.invalid && (channelName.dirty || channelName.touched)">
+                <span *ngIf="channelName.errors?.required">This field is mandate</span>
+                <span *ngIf="channelName.errors?.minimum">A minimum of five character expected</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Monthly Fee</label>
+            <input type="number" formControlName="monthlyFee" class="form-control" />
+            <div class="alert alert-danger" *ngIf="monthlyFee.invalid && (monthlyFee.dirty || monthlyFee.touched)">
+                <span *ngIf="monthlyFee.errors?.required">This field is mandate</span>
+                <span *ngIf="monthlyFee.errors?.min">A non-zero positive number expected</span>
+            </div>
+        </div>
+        <button class="btn btn-block btn-primary" [disabled]="chForm.invalid">
+            SAVE CHANNEL
+        </button>
+    </form>
+</div>

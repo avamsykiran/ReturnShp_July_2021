@@ -13,7 +13,7 @@ import com.cts.srad.entity.Subscriber;
 import com.cts.srad.entity.Subscription;
 import com.cts.srad.entity.SubscriptionId;
 import com.cts.srad.exception.D2HException;
-import com.cts.srad.model.SubscriptionDetailsForSubscriber;
+import com.cts.srad.model.SubscriptionDetails;
 import com.cts.srad.repo.ChannelRepo;
 import com.cts.srad.repo.SubscriberRepo;
 import com.cts.srad.repo.SubscriptionRepo;
@@ -76,7 +76,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
-	public List<SubscriptionDetailsForSubscriber> getAllSubscriptionsOf(Long subId) {
+	public List<SubscriptionDetails> getAllSubscriptionsOf(Long subId) {
 		return subscriptionRepo.getAllChannelNamesBySubscriber(subId);
 	}
 

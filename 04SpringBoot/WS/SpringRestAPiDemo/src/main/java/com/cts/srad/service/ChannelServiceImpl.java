@@ -9,13 +9,18 @@ import org.springframework.stereotype.Service;
 
 import com.cts.srad.entity.Channel;
 import com.cts.srad.exception.D2HException;
+import com.cts.srad.model.SubscriptionDetails;
 import com.cts.srad.repo.ChannelRepo;
+import com.cts.srad.repo.SubscriptionRepo;
 
 @Service
 public class ChannelServiceImpl implements ChannelService {
 	
 	@Autowired
 	private ChannelRepo chRepo;
+	
+	@Autowired
+	private SubscriptionRepo subpRepo;
 
 	@Override
 	public List<Channel> getAll() {
@@ -46,6 +51,11 @@ public class ChannelServiceImpl implements ChannelService {
 		if(!chRepo.existsById(chId))
 			throw new D2HException("No such channel to update");
 		chRepo.deleteById(chId);
+	}
+
+	@Override
+	public List<SubscriptionDetails> getAllSubscriptionsOf(Long channelId) {
+		return subpRepo.getAllSubscriberNamesByChannel(channelId);
 	}
 
 }

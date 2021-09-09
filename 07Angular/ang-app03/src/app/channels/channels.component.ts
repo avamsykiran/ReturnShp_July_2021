@@ -15,10 +15,22 @@ export class ChannelsComponent implements OnInit {
   constructor(private channelsService:ChannelService) { }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData(){
     this.channelsService.getAll().subscribe(
       data => this.channels=data,
       err => {console.log(err); this.err="Unable to load data..."}
     );
   }
 
+  delete(cid:number){
+    if(confirm(`Are you sure of deleting Channel#${cid}`)){
+      this.channelsService.deleteById(cid).subscribe(
+        () => this.loadData(),
+        err => {console.log(err); this.err="Unable to delete data..."}
+      );
+    }
+  }
 }
